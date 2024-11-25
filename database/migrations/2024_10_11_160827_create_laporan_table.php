@@ -14,12 +14,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('laporan', function (Blueprint $table) {
-            $table->id();
-            $table->date('periode_mulai');
-            $table->date('periode_selesai');
-            $table->string('total_pemasukan');
-            $table->string('total_pengeluaran');
-            $table->foreignId('id_users')->constrained('users')->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->date('tanggal');
+            $table->foreignUuid('id_transaksi')->constrained('transaksi');
             $table->timestamps();
         });
     }

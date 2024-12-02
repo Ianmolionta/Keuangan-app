@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::prefix('v1')->group(function(){
     Route::get('/', [TransaksiController::class, 'getAllData']);
-    Route::post('/create', [TransaksiController::class, 'createData']);
-    Route::get('/get/{id}', [TransaksiController::class, 'getDataById']);
+    Route::post('/create', [TransaksiController::class, 'createData'])->name('transaksi.create');
+    Route::get('/get/{id}', [TransaksiController::class, 'getDataById'])->name('transaksi.getAllData');
     Route::post('/update/{id}', [TransaksiController::class, 'updateData']);
     Route::delete('/delete/{id}', [TransaksiController::class, 'deleteData']);
 });

@@ -5,16 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laporan Keuangan</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/Kedai-atas.png') }}">
     <!-- Favicon icon -->
     @yield('style')
     @include('layout.style')
 
-
-
 </head>
 
 <body>
+
+    @include('sweetalert::alert')
 
     <!--*******************
         Preloader start
@@ -70,18 +72,13 @@
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="./app-profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Profile </span>
-                                    </a>
-                                    <a href="./email-inbox.html" class="dropdown-item">
-                                        <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
-                                    </a>
-                                    <a href="./page-login.html" class="dropdown-item">
+                                    <a href="javascript:void(0);" class="dropdown-item" id="logout">
                                         <i class="icon-key"></i>
-                                        <span class="ml-2">Logout </span>
+                                        <span class="ml-2">Logout</span>
                                     </a>
+                                    <form action="/logout" method="POST" id="logging-out">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -119,7 +116,7 @@
         <div class="footer">
             <div class="copyright">
                 <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p> 
+                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
             </div>
         </div>
         <!--**********************************
@@ -143,7 +140,30 @@
     <!--**********************************
         Scripts
     ***********************************-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Required vendors -->
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $("#logout").on('click', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Mau Keluar?',
+                text: "Kamu Yakin Ingin Keluar!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#7367f0',
+                cancelButtonColor: '#82868b',
+                confirmButtonText: 'Ya, Keluar !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#logging-out').submit()
+                }
+            })
+        });
+    </script>
     @yield('script')
     @include('layout.script')
 

@@ -1,8 +1,8 @@
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
         <img class="logo-abbr" src="{{asset ('assets')}}/./images/logo.png" alt="">
-        <img class="logo-compact" src="{{asset ('assets')}}/./images/logo-text.png" alt="">
-        <img class="brand-title" src="{{asset ('assets')}}/./images/logo-text.png" alt="">
+        <img class="logo-compact" src="{{asset ('assets')}}/./images/Kedai-Text.png" alt="">
+        <img class="brand-title" src="{{asset ('assets')}}/./images/Kedai-Text.png" alt="">
     </a>
 
     <div class="nav-control">

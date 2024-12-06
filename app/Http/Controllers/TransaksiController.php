@@ -10,7 +10,7 @@ class TransaksiController extends Controller
 {
     public function getAllData(){
         $data = TransaksiModel::all();
-        if ($data->isEmpty()) {
+        if (!$data) {
             return response()->json([
                 'code' => 404,
                 'message' => 'data tidak ditemukan',

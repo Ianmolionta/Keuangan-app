@@ -75,8 +75,15 @@ class LaporanController extends Controller
     public function updateData(Request $request, $id){
         try {
             DB::beginTransaction();
+            $tanggal = $request->input('tanggal');
+            $totalPemasukan = TransaksiModel::where('transaksi', 'pemasukan')->whereDate('tanggal', $tanggal)->sum('jumlah');
+            $totalPengeluaran = TransaksiModel::where('transaksi', 'pengeluaran')->whereDate('tanggal', $tanggal)->sum('jumlah');
+            $keuntungan = $totalPemasukan - $totalPengeluaran;
+
             $data = LaporanModel::find($id);
-            $data->id_transaksi = $request->input('id_transaksi');
+            $data->total_pemasukan = $totalPemasukan;
+            $data->total_pengeluaran = $totalPengeluaran;
+            $data->keuntungan = $keuntungan;
             $data->tanggal = $request->input('tanggal');
             $data->update();
             DB::commit();

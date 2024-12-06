@@ -250,7 +250,7 @@
             if (id) {
                 $.ajax({
                     type: 'POST',
-                    url: `/api/update/${id}`,
+                    url: `/api/v1/update/${id}`,
                     data: data,
                     success: function (response) {
                         if (response.code == 422) {
@@ -260,7 +260,7 @@
                             });
                         } else if (response.code == 200) {
                             $('#transaksiModal').modal('hide');
-                            showSweetAlert('success', 'Success!', 'Success perbarui data');
+                            showSweetAlert('success', 'Success!', 'sukses perbarui data');
                             getAllData();
                         } else{
                             showSweetAlert('error', 'Error', 'gagal perbarui data');
@@ -283,7 +283,7 @@
                             });
                         } else if (response.code == 200) {
                             $('#transaksiModal').modal('hide');
-                            showSweetAlert('success', 'Success!', 'Success tambah data');
+                            showSweetAlert('success', 'Success!', 'Sukses tambah data');
                             getAllData();
                         } else {
                             showSweetAlert('error', 'Error', 'gagal perbarui data');
@@ -294,6 +294,32 @@
                     }
                 });
             }
+        });
+
+        $(document).on('click', '.delete-confirm', function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda yakin ingin menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: `/api/v1/delete/${id}`,
+                        success: function(response) {
+                            showSweetAlert('success', 'Success!', 'Sukses hapus data');
+                            getAllData();
+                        },
+                        error: function(error) {
+                            Swal.fire('Error', 'Gagal menghapus data', 'error');
+                        }
+                    })
+                }
+            })
         });
     })
 </script>

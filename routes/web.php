@@ -15,19 +15,14 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'authenticate']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
-
-// route dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
-
+Route::get('/', function () {
+    return view('admin.dashboard');
+});
 
 Route::get('/transaksi', function () {
     return view('admin.transaksi');
-})->middleware('auth');
+});
 
 Route::get('/laporan', function () {
     return view('admin.laporan');
-})->middleware('auth');
+});

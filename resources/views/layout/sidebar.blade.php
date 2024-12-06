@@ -2,7 +2,7 @@
     <div class="quixnav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Main Menu</li>
-            <li><a class="" href="/dashboard" aria-expanded="false"><i class="icon icon-single-04"></i><span
+            <li><a class="" href="/" aria-expanded="false"><i class="icon icon-single-04"></i><span
                         class="nav-text">Dashboard</span></a>
             </li>
             <li><a class="" href="/transaksi" aria-expanded="false"><i

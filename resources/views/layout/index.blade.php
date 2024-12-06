@@ -16,8 +16,6 @@
 
 <body>
 
-    @include('sweetalert::alert')
-
     <!--*******************
         Preloader start
     ********************-->
@@ -140,32 +138,8 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Required vendors -->
-    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $("#logout").on('click', function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: 'Mau Keluar?',
-                text: "Kamu Yakin Ingin Keluar!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#7367f0',
-                cancelButtonColor: '#82868b',
-                confirmButtonText: 'Ya, Keluar !'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#logging-out').submit()
-                }
-            })
-        });
-    </script>
-    @yield('script')
     @include('layout.script')
+    @yield('script')
 
 </body>
 

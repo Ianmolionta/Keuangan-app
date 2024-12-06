@@ -24,6 +24,24 @@
 <script src="{{asset ('assets')}}/./vendor/jqvmap/js/jquery.vmap.min.js"></script>
 <script src="{{asset ('assets')}}/./vendor/jqvmap/js/jquery.vmap.usa.js"></script>
 <script src="{{asset ('assets')}}/./vendor/jquery.counterup/jquery.counterup.min.js"></script>
+<script src="{{asset ('assets')}}/./vendor/datatables/js/jquery.dataTables.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{{-- <script src="{{asset ('assets')}}/./js/jquery/jquery.min.js"></script> --}}
 
 
-<script src="./js/dashboard/dashboard-1.js"></script>
+{{-- <script src="{{asset ('assets')}}/./js/dashboard/dashboard-1.js"></script> --}}
+
+<script src="{{asset ('assets')}}/./vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="{{asset ('assets')}}/./js/plugins-init/datatables.init.js"></script>
+
+<!-- jQuery -->
+{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+
+<!-- Popper.js (Diperlukan untuk Bootstrap 4) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>

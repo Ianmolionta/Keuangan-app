@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('jumlah');
             $table->enum('transaksi',['pemasukan', 'pengeluaran']);
             $table->text('deskripsi');
-            $table->date('tanggal');
+            $table->string('tanggal');
             $table->timestamps();
         });
     }

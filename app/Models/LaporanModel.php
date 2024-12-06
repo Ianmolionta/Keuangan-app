@@ -13,6 +13,9 @@ class LaporanModel extends Model
     protected $table = 'laporan';
     protected $fillable = [
         'id',
+        'total_pengeluaran',
+        'total_pemasukan',
+        'keuntungan',
         'tanggal'
     ];
     

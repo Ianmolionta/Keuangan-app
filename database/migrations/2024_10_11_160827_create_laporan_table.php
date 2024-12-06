@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->date('tanggal');
-            $table->foreignUuid('id_transaksi')->constrained('transaksi');
+            $table->string('total_pemasukan');
+            $table->string('total_pengeluaran');
+            $table->string('keuntungan');
+            $table->string('tanggal');
             $table->timestamps();
         });
     }

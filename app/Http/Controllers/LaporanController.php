@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LaporanModel;
+use App\Models\TransaksiModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class LaporanController extends Controller
 {
     public function getAllData(){
-        $data = LaporanModel::with('getTransaksi')->get();
+        $data = LaporanModel::all();
         if (!$data) {
             return response()->json([
                 'code' => 404,
@@ -28,9 +29,16 @@ class LaporanController extends Controller
     public function createData(Request $request){
         try {
             DB::beginTransaction();
+            $tanggal = $request->input('tanggal');
+            $totalPemasukan = TransaksiModel::where('transaksi', 'pemasukan')->whereDate('tanggal', $tanggal)->sum('jumlah');
+            $totalPengeluaran = TransaksiModel::where('transaksi', 'pengeluaran')->whereDate('tanggal', $tanggal)->sum('jumlah');
+            $keuntungan = $totalPemasukan - $totalPengeluaran;
+
             $data = new LaporanModel();
-            $data->id_transaksi = $request->input('id_transaksi');
-            $data->tanggal = $request->input('tanggal');
+            $data->total_pemasukan = $totalPemasukan;
+            $data->total_pengeluaran = $totalPengeluaran;
+            $data->keuntungan = $keuntungan;
+            $data->tanggal = $tanggal;
             $data->save();
             DB::commit();
             return response()->json([
